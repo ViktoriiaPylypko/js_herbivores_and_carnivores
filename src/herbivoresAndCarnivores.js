@@ -12,11 +12,7 @@ class Animal {
   }
 
   die() {
-    const index = Animal.alive.indexOf(this);
-
-    if (index !== -1) {
-      Animal.alive.splice(index, 1);
-    }
+    Animal.alive = Animal.alive.filter((animal) => animal !== this);
   }
 }
 
@@ -35,12 +31,10 @@ class Herbivore extends Animal {
 class Carnivore extends Animal {
   // write your code here
   bite(target) {
-    // target must be a Herbivore
     if (!(target instanceof Herbivore)) {
       return;
     }
 
-    // cannot bite hidden herbivore
     if (target.hidden === true) {
       return;
     }
